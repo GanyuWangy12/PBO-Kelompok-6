@@ -49,3 +49,7 @@ echo"<br>";
 echo $mobil1->maju();
 echo"<br>";
 echo $mobil1->mundur();
+echo"<br>";
+echo $mobil1->belokKanan();
+echo"<br>";
+echo $mobil1->belokKiri();
