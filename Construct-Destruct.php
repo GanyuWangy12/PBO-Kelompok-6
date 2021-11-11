@@ -8,7 +8,7 @@ class Lingkaran {
     }
     
     public function getKeliling(){
-    	return $this->keliing;
+    	return $this->keliling;
     }
     
     public function __destruct(){
