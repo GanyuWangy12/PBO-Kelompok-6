@@ -1,0 +1,141 @@
+<?php
+
+abstract class BangunDatar
+{
+    abstract public function buatBangunDatar();
+}
+
+interface Info {
+	public function deskripsi();
+}
+
+// Inherit class BangunDatar
+class Persegi extends BangunDatar implements Info 
+{
+    protected $sisi;
+
+    public function __construct($sisi)
+    {
+        $this->sisi = $sisi;
+    }
+
+    public function buatBangunDatar($pola = '*')
+    {
+        echo "<br>";
+        for ($i = 0; $i < $this->sisi; $i++) {
+            for ($j = 0; $j < $this->sisi; $j++) {
+                echo $pola . '&nbsp;&nbsp;&nbsp;';
+            }
+            echo "<br>";
+        }
+        echo "<br>";
+    }
+    
+    public function deskripsi(){
+    	echo "Ini adalah object dari class Persegi dengan sisi = $this->sisi <br>";
+    }
+}
+
+// Inherit class BangunDatar
+class PersegiPanjang extends BangunDatar implements Info 
+{
+    private $panjang;
+    private $lebar;
+
+    public function __construct($panjang, $lebar)
+    {
+        $this->panjang = $panjang;
+        $this->lebar = $lebar;
+    }
+
+    public function buatBangunDatar($pola = '*')
+    {
+        echo "<br>";
+        for ($i = 0; $i < $this->lebar; $i++) {
+            for ($j = 0; $j < $this->panjang; $j++) {
+                echo $pola . ' ';
+            }
+            echo "<br>";
+        }
+        echo "<br>";
+    }
+    
+      public function deskripsi(){
+    	echo "Ini adalah object dari class PersegiPanjang dengan panjang = $this->panjang dan lebar = $this->lebar <br>";
+    }
+}
+
+abstract class Segitiga extends Persegi implements Info 
+{
+}
+
+// Final class SegitigaSamaSisi dan Inherit class Segitiga
+final class SegitigaSamaSisi extends Segitiga
+{
+    public function buatBangunDatar($pola = '*')
+    {
+        echo "<br>";
+        for ($i = 1; $i <= $this->sisi; $i++) {
+            for ($j = $i; $j < $this->sisi; $j++) {
+                echo "&nbsp;&nbsp;";
+            }
+            for ($k = 1; $k <= $i; $k++) {
+                echo $pola ."&nbsp;&nbsp;";
+            }
+            echo "<br>";
+        }
+        echo "<br>";
+    }
+    
+    public function deskripsi(){
+    	echo "Ini adalah object dari class SegitigaSamaSisi dengan sisi = $this->sisi <br>";
+    }
+}
+
+// class SegitigaSiku Inherit class SegitigaSamaSisi, maka akan error
+class SegitigaSiku // extends SegitigaSamaSisi
+{
+}
+
+// Buat objek dari class Persegi 
+$obj1 = new Persegi(4);
+$obj1->deskripsi();
+$obj1->buatBangunDatar();
+
+$obj1 = new Persegi(2);
+$obj1->deskripsi();
+$obj1->buatBangunDatar();
+
+$obj1 = new Persegi(9);
+$obj1->deskripsi();
+$obj1->buatBangunDatar();
+
+echo "<hr>";
+
+// Buat objek dari class PersegiPanjang
+$obj2 = new PersegiPanjang(8,4);
+$obj2->deskripsi();
+$obj2->buatBangunDatar("x");
+
+$obj2 = new PersegiPanjang(12,6);
+$obj2->deskripsi();
+$obj2->buatBangunDatar("x");
+
+$obj2 = new PersegiPanjang(16,8);
+$obj2->deskripsi();
+$obj2->buatBangunDatar("x");
+
+echo "<hr>";
+
+// Buat objek dari class SegitigaSamaSisi
+$obj3 = new SegitigaSamaSisi(8);
+$obj3->deskripsi();
+$obj3->buatBangunDatar();
+
+$obj3 = new SegitigaSamaSisi(13);
+$obj3->deskripsi();
+$obj3->buatBangunDatar();
+
+$obj3 = new SegitigaSamaSisi(16);
+$obj3->deskripsi();
+$obj3->buatBangunDatar();
